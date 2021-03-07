@@ -73,21 +73,21 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :address
 
 ## addresses テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| postal_code | string     | null: false                    |
-| prefecture  | string     | null: false                    |
-| city        | string     | null: false                    |
-| street      | string     | null: false                    |
-| building    | string     |                                |
-| phone       | string     | null: false                    |
-| purchase    | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| street        | string     | null: false                    |
+| building      | string     |                                |
+| phone         | string     | null: false                    |
+| purchase      | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :purchase
+- belongs_to :purchase
