@@ -28,18 +28,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| nickname         | string  | null: false |
-| email            | string  | null: false |
-| password         | string  | null: false |
-| family_name      | string  | null: false |
-| first_name       | string  | null: false |
-| family_name_kana | string  | null: false |
-| first_name_kana  | string  | null: false |
-| birthday_yy      | integer | null: false |
-| birthday_mm      | integer | null: false |
-| birthday_dd      | integer | null: false |
+| Column             | Type    | Options                  |
+| ------------------ | ------- | ------------------------ |
+| nickname           | string  | null: false              |
+| email              | string  | null: false, unique: true|
+| encrypted_password | string  | null: false              |
+| family_name        | string  | null: false              |
+| first_name         | string  | null: false              |
+| family_name_kana   | string  | null: false              |
+| first_name_kana    | string  | null: false              |
+| birthday           | date    | null: false              |
 
 ### Association
 
@@ -48,25 +46,22 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| image         | string     | ActiveStorage, null: false     |
-| name          | text       | null: false                    |
-| comment       | text       | null: false                    |
-| category      | string     | null: false                    |
-| condition     | string     | null: false                    |
-| delivery      | string     | null: false                    |
-| prefecture    | string     | null: false                    |
-| shipping_date | string     | null: false                    |
-| price         | integer    | null: false                    |
-| seller        | references | null: false, foreign_key: true |
-| buyer         | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| name             | string     | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| condition_id     | integer    | null: false                    |
+| delivery_id      | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| shipping_date_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- belongs_to :purchases
-- belongs_to :address
+- belongs_to :user
+- has_one :purchase
 
 ## purchases テーブル
 
@@ -77,21 +72,22 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- has_one :item
+- has_one :address
 
-## address テーブル
+## addresses テーブル
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
-| postal_code | integer    | null: false                    |
+| postal_code | string     | null: false                    |
 | prefecture  | string     | null: false                    |
 | city        | string     | null: false                    |
 | street      | string     | null: false                    |
-| building    | string     | null: false                    |
-| phone       | integer    | null: false                    |
-| item        | references | null: false, foreign_key: true |
+| building    | string     |                                |
+| phone       | string     | null: false                    |
+| purchase    | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :items
+- has_one :purchase
