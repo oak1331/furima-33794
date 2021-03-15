@@ -12,7 +12,7 @@ class Item < ApplicationRecord
     validates :name
     validates :description
     validates :price
-    validares :image
+    validates :image
   end
 
   with_options numericality: { other_than: 1 } do
