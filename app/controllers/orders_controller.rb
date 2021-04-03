@@ -28,6 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path unless Item.find(params[:id]).user.id.to_i == current_user.id
+    redirect_to root_path if Item.find(params[:item_id]).user.id.to_i == current_user.id
+    # redirect_to root_path Item.find(params[:item_id]).user.id == current_user.id
   end
 end
