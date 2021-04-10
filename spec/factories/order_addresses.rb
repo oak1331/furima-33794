@@ -6,6 +6,6 @@ FactoryBot.define do
     street { Faker::Lorem.sentence }
     phone { Faker::Number.number(digits: 11) }
     prefecture_id { Faker::Number.between(from: 2, to: 48) }
-    token {"tok_abcdefghijk00000000000000000"}
+    token { 'tok_abcdefghijk00000000000000000' }
   end
 end

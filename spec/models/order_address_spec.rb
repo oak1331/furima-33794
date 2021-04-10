@@ -18,7 +18,7 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'phoneが半角数字かつ11桁以下であれば登録できること' do
-        @order_address.phone = 12345678901
+        @order_address.phone = 12_345_678_901
         expect(@order_address).to be_valid
       end
     end
@@ -33,25 +33,25 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeにハイフンが無ければ登録できないこと' do
         @order_address.postal_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'postal_codeが全角では登録できないこと' do
         @order_address.postal_code = '１２３ー４５６７'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'postal_codeが半角英数字混合では登録できないこと' do
         @order_address.postal_code = '123-456a'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'postal_codeが半角英語のみでは登録できないこと' do
         @order_address.postal_code = 'hankaku'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid')
       end
 
       it 'cityが空では登録できないこと' do
@@ -73,27 +73,27 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'phoneが12桁以上では登録できないこと' do
-        @order_address.phone = 123456789012
+        @order_address.phone = 123_456_789_012
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is too long (maximum is 11 characters)")
+        expect(@order_address.errors.full_messages).to include('Phone is too long (maximum is 11 characters)')
       end
 
       it 'phoneが全角では登録できないこと' do
         @order_address.phone = '１２３４５６７８９０１'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'phoneが半角英数字混合では登録できないこと' do
         @order_address.phone = '1234567890a'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'phoneが半角英語のみでは登録できないこと' do
         @order_address.phone = 'hankaku'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'prefecture_idが1では登録できないこと' do
@@ -102,7 +102,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
