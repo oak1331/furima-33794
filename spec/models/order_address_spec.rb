@@ -102,17 +102,11 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Prefecture must be other than 1')
       end
 
-      # it 'userが紐付いていなければ投稿できない' do
-      #   @order_address.user = nil
-      #   @order_address.valid?
-      #   expect(@order_address.errors.full_messages).to include('User must exist')
-      # end
-
-      # it 'itemが紐付いていなければ投稿できない' do
-      #   @order_address.item = nil
-      #   @order_address.valid?
-      #   expect(@order_address.errors.full_messages).to include('Item must exist')
-      # end
+      it "tokenが空では登録できないこと" do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
