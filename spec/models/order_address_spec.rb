@@ -80,7 +80,7 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'phoneが12桁以上では登録できないこと' do
-        @order_address.phone = 123_456_789_012
+        @order_address.phone = '123456789012'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone is too long (maximum is 11 characters)')
       end
